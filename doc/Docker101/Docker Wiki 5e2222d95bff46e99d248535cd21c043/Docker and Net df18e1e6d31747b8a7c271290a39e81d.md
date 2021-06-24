@@ -1,6 +1,6 @@
 # Docker and .Net
 
-**Tip: Step by step to containerize an demo .net core application**
+**Tip: Step by step to containerize a demo .net core application**
 
  
 

@@ -1,0 +1,676 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Docker and .Net</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="df18e1e6-d317-47b8-a7c2-71290a39e81d" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1517650862521-d580d5348145?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🔄</span></div><h1 class="page-title">Docker and .Net</h1></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0f301799-3e41-483b-873f-caa79a96061b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Tip: Step by step to containerize a demo .net core application</strong></div></figure><p id="3e85ca52-2318-4870-ab65-d16e3c0d6740" class=""> </p><nav id="66069d61-4348-4765-ac66-fa82f0759570" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9bee4e1e-faae-4d74-8536-eb3b89e700a9">Checkout the demo solution</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bf34aab0-4d89-4081-ab95-c54ea7051334">Connect to the Linux container instance</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cfc4f319-946f-456d-b32d-4d6a6f9ab5f4">Running the applications</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c50e2522-6591-4565-9234-b2a3d8edfdda">Add Docker support</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c1001575-120f-44d6-adb1-a22c65255935"><strong>Debugging with Docker container instances</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c478914f-8068-4cdc-a6a4-fe5a2adafa22">Running SQL Server in a Docker container composition</a></div></nav><h1 id="9bee4e1e-faae-4d74-8536-eb3b89e700a9" class="">Checkout the demo solution</h1><p id="3117805d-ca2a-4062-a86f-be4993303a75" class="">Download the solution from the shared folder.</p><p id="a0e0b119-b34c-44c2-beef-e8b4b505f393" class="">Open the solution `ContainerWorkshop.sln` in Visual Studio. Take your time to navigate the code and familiarize yourself with the various projects in the solution. You should be able to identify these:</p><ul id="45d56a5f-78c9-4690-8738-4143bee408e3" class="bulleted-list"><li>`GamingWebApp`, an ASP.NET MVC Core frontend</li></ul><ul id="10d0002c-8837-46b3-a161-4f5eac1ac740" class="bulleted-list"><li>`LeaderboardWebAPI`, an ASP.NET Core Web API</li></ul><h1 id="bf34aab0-4d89-4081-ab95-c54ea7051334" class="">Connect to the Linux container instance</h1><p id="3f44fd11-0da6-4215-87c3-6422085be434" class="">Update the connectionstring in the appsettings.json file to use the local ip address instead of localhost or 127.0.0.1. We will need this later.</p><pre id="2b81993b-d3c8-4430-ba84-dc319305c7c4" class="code code-wrap"><code>{
+  &quot;ConnectionStrings&quot;: {
+    &quot;LeaderboardContext&quot;: &quot;Server=tcp:&lt;&lt;your-ip-address&gt;&gt;,5433;Database=Leaderboard;User Id=sa;Password=Pass@word;Trusted_Connection=False;&quot;
+  }
+</code></pre><h1 id="cfc4f319-946f-456d-b32d-4d6a6f9ab5f4" class="">Running the applications</h1><p id="e840f466-abde-4e37-a4ec-953e7126b374" class="">Start in Debug LeaderBoardWebApi</p><p id="2b311306-8abc-4daa-bf4d-f3853e570c22" class="">Check the IP of the debug configuration of the LeaderBoardWebApi and make sure the same address is used in GamingWebApp appSettings</p><p id="7137ce4b-5b8e-4755-a1a1-ea671d959460" class="">Start in Debug GamingWebApp  (url: <a href="https://localhost:44326/">https://localhost:44326/</a>)</p><p id="584549c5-039c-4383-b63e-ab0e85846b7a" class="">Observe the data present. Even though we started with an empty database, some data was inserted by the WebApi.</p><p id="4baa458b-995f-4454-8e84-08dd7c84b0f9" class="">Using Visual Studio and the command in WSL → check the data is actually present in the database.</p><p id="4a1901f9-a08a-4fa4-9f68-ed20134a6121" class="">
+</p><p id="bf500f14-b6e4-4457-bb14-0277551b8f81" class="">Stop the application and check the data persistence in the Data Connection → Database: &quot;Leaderboard&quot;.</p><p id="e5296698-84ca-489f-9cb6-de7075c7b799" class="">Change one Gamer name and refresh the GamingWebApp</p><p id="641db16f-414b-4d6d-871b-651d2a4e218d" class="">Using the console - query in the docker container. </p><p id="fe7e890d-254d-447a-a920-d5c04b438785" class="">Check the presence of the Leaderboard database:</p><pre id="bad6a8cf-85c9-4629-9e6b-199c4f4d547e" class="code code-wrap"><code>select name from sys.databases
+go</code></pre><p id="73224e75-61e1-432a-ba98-86b7659a5e15" class="">Check the modified record from Gamers</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5dadd372-6b53-4399-9f95-aa1b1cf6b039"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">exit command to close the consode sqlcmd</div></figure><p id="12c42dac-1adf-4454-a21a-ecdfe98d6715" class="">Connect sqlcmd to the Leaderboard database</p><pre id="2448fb7c-c832-4722-a8cb-13fc39cdde07" class="code code-wrap"><code>docker exec -it sqldocker /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P &quot;Pass@word&quot; -d Leaderboard</code></pre><pre id="250b301a-b85c-47b5-957c-177930370ad6" class="code code-wrap"><code>select * from Gamers
+</code></pre><p id="2f43ab9f-72bc-4a81-b30e-6dc1e7ce0b71" class="">Close the applications and check the state of the database</p><h1 id="c50e2522-6591-4565-9234-b2a3d8edfdda" class="">Add Docker support</h1><p id="c304881e-904e-49d1-b018-19470d5272cc" class="">Visual Studio offers tooling for adding support to run your application in a Docker container. You will first add container support to the Web API project.</p><p id="88951e01-2486-46bc-8f2b-beabf25377a2" class="">Have the Output window front and center</p><p id="b8ae280d-5568-47d3-a40d-b6ac8a1b7997" class="">To get started you can right-click the <strong>LeaderboardWebAPI </strong>project and select <code><mark class="highlight-gray_background">Add </mark></code>→ <code><mark class="highlight-gray_background">Container Orchestrator Support</mark></code><mark class="highlight-gray_background"> </mark>from the context menu. Choose<mark class="highlight-gray_background"> </mark><code><mark class="highlight-gray_background">Docker Compose</mark></code> as the local orchestrator from the dropdown.</p><p id="3e65278e-dbcb-4986-b27e-46204907ac88" class="">In the next dialog, choose <code>Linux</code> as the target operating system.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4d34fdd2-18f4-4801-8041-dbfedc4de14d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Check the Output window for actions performed already in docker (pulled images and created the needed containers)</div></figure><p id="a36a0f33-54aa-4e8b-8cc9-94d78ec19c54" class="">Observe the changes that Visual Studio makes to your solution.</p><p id="3f8311ce-fdd8-4a7e-aadc-305cd64f3e95" class="">Most noticeably you will see that a new Docker Compose project has been added with the name <code>docker-compose</code>. It is now your start project for the solution. <em>(If it&#x27;s not, make sure to configure it as the startup project.)</em></p><p id="a7c8b838-62d5-4b36-aea2-306bd205b42a" class="">Run<code> docker ps </code>and observe there is already the container with the leaderboardwebapi</p><p id="c3eead02-983a-47dc-90a5-f95531cbb6c0" class="">
+</p><p id="062a741c-141c-4cab-ab8e-3aaf26d8c3b1" class=""><strong>Inspect </strong>the contents of the <code>docker-compose.yml</code> and <code>docker-compose.override.yml</code> files. </p><p id="0092956a-3980-4a84-b36e-70c5ed69f20e" class="">The compose file specifies </p><ul id="0132c1d0-0509-418e-baec-233f54bc2851" class="bulleted-list"><li>services (containers)</li></ul><ul id="93d6f547-c94f-428c-a270-eecb539c517e" class="bulleted-list"><li> volumes (data) </li></ul><ul id="cb73c367-b8ed-4946-be6c-27f55b8e2b0b" class="bulleted-list"><li>networks (connectivity)</li></ul><p id="083cec9c-b3ae-4864-a537-b51ff170dee8" class="">needed to be created and run. The <code>override</code> file is used for local debugging purposes.</p><p id="779e36a0-bbd8-4585-91a1-49beb661ea98" class="">For more detailed information on the structure of a dockerfile and a dockercompose check: </p><figure id="4eb51020-63ef-413b-bbb6-658c6984fec3"><a href="https://www.educative.io/blog/docker-compose-tutorial#:~:text=Docker%20Compose%20file%20structure" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Docker Compose Tutorial: advanced Docker made simple</div><div class="bookmark-description">Docker Compose is an advanced Docker tool that simplifies your workflow. In this article, we will show you how to get started with Docker Compose and its popular commands.</div></div><div class="bookmark-href"><img src="https://www.educative.io/static/favicons/faviconV2.png" class="icon bookmark-icon"/>https://www.educative.io/blog/docker-compose-tutorial#:~:text=Docker%20Compose%20file%20structure</div></div><img src="https://www.educative.io/v2api/editorpage/5645873548623872/image/5095975732379648" class="bookmark-image"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="09f85537-92aa-43b1-bf2e-9af601e11bd4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Think of docker-compose as an automated multi-container workflow.</div></figure><p id="6399003e-3112-45d4-a6d2-fb113a262635" class="">
+</p><p id="23f1ffd0-d5ae-4138-ac73-8f81ad1d538d" class=""><strong>Repeat </strong>adding Docker support for the Web application project. More changes will be made to the YAML files.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9d999bd9-f620-4a8e-9f74-f7f3743704b8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">To see the containers in Visual Studio you can choose from toolbar &quot;View&quot; →  &quot;Other Windows&quot; → &quot;Containers&quot;</div></figure><p id="bd799e95-1b99-444a-bfb9-98d96ffb03de" class="">
+</p><p id="29cdc5d8-b493-4cbf-8ee7-d10058c51a3a" class="">Run your application again. Which projects are effectively started? If some project is not running, start it by choosing <code>Debug</code> &gt; <code>Start new instance</code> from the right-click context menu of the project.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1e624ce3-72d5-4bc6-85fd-8ad5f217d0b6"><div style="font-size:1.5em"><span class="icon">🐞</span></div><div style="width:100%">If you encounter the error &#x27;The DOCKER_REGISTRY variable is not set. Defaulting to a blank string.&#x27;, make sure you started Visual Studio as an administrator</div></figure><p id="c717c7b7-ad6e-4d0c-99f5-a6be01038796" class="">(url: <a href="https://localhost:44326/">https://localhost:44326/</a>)</p><blockquote id="3a167a28-85ab-44d2-ab18-4b5c9f2d2d45" class="">Does the application still work?</blockquote><p id="ed19a311-15d9-4250-a9e6-c65a8d8776ee" class="">Now that the projects are running from a Docker container, the application is not working anymore. You can try to find what is causing the issue, but do not spend too much time to try to fix it. We will do that next.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d660b78a-c5e7-4f73-ae89-ae949f495825"><div style="font-size:1.5em"><span class="icon">🐞</span></div><div style="width:100%">Some things to try if you feel like finding the cause: </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7403d192-bf3e-46e5-b0a2-0f9166c6881c"><div style="font-size:1.5em"><span class="icon">🐞</span></div><div style="width:100%">Inspect the running and stopped containers
+Try to reach the Web API from https://localhost:44369/swagger.
+Debug the call from the web page to the API by stepping through the code.Verify application settings for each of the projects.</div></figure><p id="5112657a-ec0a-4558-8016-09c96a804bce" class="">The <code>docker-compose.override.yml</code> file contains port mappings, defining the ports inside the container. However, there is no mapping to the outside yet. Change the composition file to add the port numbers for the <code>gamingwebapp</code> and <code>leaderboardwebapi</code> to reflect these mappings:</p><pre id="b36a2b6f-bae6-4e1e-b61c-0557b413fe06" class="code code-wrap"><code>version: &#x27;3.4&#x27;
+
+services:
+  leaderboardwebapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - &quot;5000:80&quot;
+      - &quot;5001:443&quot;
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  gamingwebapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - &quot;5619:80&quot;
+      - &quot;44326:443&quot;
+    volumes:
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+</code></pre><p id="27036a1a-b0df-4390-bf73-25182beb3d46" class="">The setting for <code>LeaderboardWebApi:BaseUrl</code>  from <strong>GamingWebApp appSettings.json </strong>should now point to the new endpoint of the Web API with the internal address <code>http://leaderboardwebapi</code>.</p><blockquote id="bb57e05c-93a8-42cf-b26b-a7a8b0070740" class="">For now, notice that the URL is not referring to localhost but leaderboardwebapi, which is the name of the Docker container service as defined in the docker-compose.yml file.</blockquote><p id="a0df03b1-ed90-4c08-8d14-9c20b03027bb" class="">we will not get into details with Networking in Docker</p><figure id="3d1ebae5-dbd8-4b9b-b249-e5075d37ae17"><div class="source"><a href="https://docs.docker.com/network/">https://docs.docker.com/network/</a></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f767e8d0-18e5-4552-9862-71ee1f7ac008"><div style="font-size:1.5em"><span class="icon">🐞</span></div><div style="width:100%">Make sure you use the HTTP endpoint, because hosting an HTTPS endpoint with self-signed certificates in a cluster does not work by default.</div></figure><blockquote id="1154dad3-c10a-422e-bc32-fc9b3deb801c" class="">Changing the setting in the appsettings.json file will work and you could choose to do so for now. It does mean that the setting for running without container will not work anymore. </blockquote><p id="dd065bca-a6c5-4138-957d-850103b5b065" class="">In case you thought of changing the setting via environment variables, you can make this change inside of the <code>docker.override.yml</code> file.</p><pre id="dc8ccbd2-1a52-40d6-87d8-0aa937f59750" class="code code-wrap"><code>gamingwebapp:
+  environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - LeaderboardApiOptions__BaseUrl=http://leaderboardwebapi
+
+</code></pre><p id="7c293b41-4a3b-43f6-8893-4b00d4709a7f" class="">Make sure you changed the IP address of the connection string in the application settings for the Web API to be your local IP address (of your LAN) instead of <code>127.0.0.1</code> or <code>localhost</code>. </p><p id="bac19f2d-45c2-4c83-a92e-aeae23ce7f04" class="">Start the solution by pressing <code>F5</code>. See if it works correctly. </p><p id="a270baed-ec40-437a-be51-b9ad9e9ece32" class="">Go to: <a href="https://localhost:44326/">https://localhost:44326/</a></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3bbc1464-15f9-48c4-9ccb-a00143dc7440"><div style="font-size:1.5em"><span class="icon">🐞</span></div><div style="width:100%">If you get error messages indicating that ports are in use, shut down IIS Express from the tray icon. The switch to a Docker environment with the same port numbers created the conflict. </div></figure><h1 id="c1001575-120f-44d6-adb1-a22c65255935" class=""><strong>Debugging with Docker container instances</strong></h1><p id="d1bb054c-06b5-4637-82db-a33a8a386055" class="">One of the nicest features of the Docker support in Visual Studio is the debugging support while running container instances. Check out how easy debugging is by stepping through the application like before.</p><p id="423e9987-87a9-4380-a518-139a126ab5f6" class="">Put a breakpoint at the first statement of the <code>OnGetAsync</code> method in the <code>IndexModel</code> class in the <code>GamingWebApp</code> project. Add another breakpoint in the <code>Get</code> method of the LeaderboardController in the Web API project. Run the application by pressing F5. You should be hitting the breakpoints and jump from one container instance to the other.</p><h1 id="c478914f-8068-4cdc-a6a4-fe5a2adafa22" class="">Running SQL Server in a Docker container composition</h1><p id="b8dd0860-aaab-4749-a2be-8c31c6a69c43" class="">Now that your application is running two projects in Docker containers, you can also run SQL Server in the same composition. This is convenient for isolated development and testing purposes. It eliminates the need to install SQL Server locally and to start the container for SQL Server manually.</p><p id="a217d55d-e7d5-40b1-9f2d-c0ce0e8f633c" class="">Go ahead and add the definition for a container service in the <code>docker-compose.yml</code> file.</p><pre id="b89904e3-120d-475e-8421-043b25c0409b" class="code code-wrap"><code>  sql.data:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+</code></pre><p id="5655a44b-9217-4ebc-a2b6-f84e95f4f152" class="">The new container service also requires these same environment variables. Add them to the <code>docker-compose.override.yml</code> file under an entry for sql.data.</p><pre id="9a9fe94c-73c1-4c05-93b3-f47b989c6013" class="code code-wrap"><code>  sql.data:
+    environment:
+      - SA_PASSWORD=Pass@word
+      - MSSQL_PID=Developer
+      - ACCEPT_EULA=Y
+    ports:
+      - &quot;1433&quot;
+</code></pre><blockquote id="33550be1-e54b-4701-b06b-17634a55710a" class="">Which additional changes are needed?</blockquote><p id="8df4e6e7-71b9-4a07-bdde-b982560c4c94" class="">You will need to change the connection string for the Web API to reflect the new way of hosting of the database. Add a new environment variable for the connection string of the leaderboard.webapi service in the <code>docker-compose.override.yml</code> file:</p><pre id="a98707dd-0d82-4db4-adf0-f8941f389735" class="code code-wrap"><code>- ConnectionStrings__LeaderboardContext=Server=sql.data;Database=Leaderboard;User Id=sa;Password=Pass@word;Trusted_Connection=False
+</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="54b4fdc8-96f8-4924-b505-997d62ab6749"><div style="font-size:1.5em"><span class="icon">🐞</span></div><div style="width:100%">With this change, you should be able to run your applications in containers. Make sure you have stopped any containers related to the application. </div></figure><figure id="5e2222d9-5bff-46e9-9d24-8535cd21c043" class="link-to-page"><a href="../Docker%20Wiki%205e2222d95bff46e99d248535cd21c043.html"><span class="icon">🏗</span>Docker Wiki</a></figure></div></article></body></html>

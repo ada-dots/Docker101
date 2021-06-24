@@ -1,0 +1,661 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Getting Started</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ceba38f-6793-478c-95f3-e08689ad6490" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🚜</span></div><h1 class="page-title">Getting Started</h1></header><div class="page-body"><p id="f3e7daf8-5320-4ca1-b81c-a23e3a0da915" class="">Goals for this lab:</p><nav id="a56041ea-3c46-4ac8-a2b7-cf3b54ea400d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9b553197-8c95-4161-b91b-bf26d93bb402">Prerequisites</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0eed9c12-61ae-46fd-9e80-d9b00cb257fb">Inspect your Docker environment</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3387a48b-789b-4e6a-a4c6-516806c3a36c">Managing container instances</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9e1349fb-c930-44ce-a577-99f195593489">Something more advanced</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#ed32f39f-6c6e-4121-b539-e46fa7010dec">Running an Nginx web server</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#4d8a9046-1f06-4336-98bb-cf28be146e2b">Running Microsoft SQL Server on Linux</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#27454fc6-c9fb-49bc-a9b4-959c41b043a8">Using <code>SQLCMD</code> to connect to your database server</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a8652611-91e7-4533-ab67-c2937e45c045">Using Visual Studio to connect to your database server</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a951e0f6-261e-4fb1-9c05-ee8df9880e83">Cleaning up</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b1d556a7-6353-4e2e-b95c-954fa1f336f6">Working with container images</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4fae47a5-8782-4fe9-902e-d8986c3365fe">Container state and volumes</a></div></nav><h2 id="9b553197-8c95-4161-b91b-bf26d93bb402" class="">Prerequisites</h2><p id="df0da34d-457e-4a99-b212-6bc1d8e8954e" class="">make sure you have installed all the items from the section &quot;Tools we will use&quot;</p><h1 id="0eed9c12-61ae-46fd-9e80-d9b00cb257fb" class="">Inspect your Docker environment</h1><p id="bf43e7ce-3cd5-430e-ab4c-33bfa43e46a8" class="">Let&#x27;s check whether your Docker Desktop tooling is correctly set up. Also, you might need to get familiar with the Docker tooling.</p><p id="666b771b-4814-4ddb-89dd-05aaebcbdb40" class="">You should see the Docker tooling running. On Windows, you can check this by looking for a tray icon like this:</p><figure id="24af0f9e-94b7-4967-b40d-ef0bf570dd36" class="image"><a href="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled.png"><img style="width:120px" src="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled.png"/></a></figure><p id="f5fdb4a7-3ccd-486b-89a4-95fd38f90ca2" class="">If you cannot find the Docker icon in the tray, you might need to start the Docker tooling installed for most of the time at the path:</p><pre id="0af0d96a-628b-486a-8b94-4c501b1a13cf" class="code code-wrap"><code>C:\Program Files\Docker\Docker\Docker for Windows.exe</code></pre><figure id="1b059452-24d1-42cd-aa32-5a1796266168" class="image"><a href="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%201.png"><img style="width:377px" src="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%201.png"/></a></figure><p id="f53a2e3c-b1dd-4101-928f-2d4f3d3fc192" class="">After starting the Docker tooling, the tray icon should be present.</p><ul id="7d5e081c-58a2-42a1-902a-33658090dd34" class="bulleted-list"><li>Open a terminal</li></ul><ul id="38e435ea-57c6-4934-b53b-903e925e9bf5" class="bulleted-list"><li>If on Windows, run:
+This opens your default WSL distro - we installed in section &quot;Prepare your development laptop&quot; Ubuntu<pre id="b8802253-450c-474e-a72b-bbcece9115a2" class="code code-wrap"><code>wsl</code></pre></li></ul><h2 id="3387a48b-789b-4e6a-a4c6-516806c3a36c" class="">Managing container instances</h2><p id="ec8e5d11-18ea-401b-b68c-aeed17f945d2" class="">Let&#x27;s start some container instances. </p><p id="d6142233-8400-4dfe-96cc-7ef582a5f4f1" class="">The most common sample is &quot;Hello World&quot;. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4ddf4942-368e-4d0c-aad4-0c96e1fed467"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">This will start a container that should run if everything is configured correctly. From a command prompt, run the following command:</div></figure><pre id="fc06f9fe-24e6-462a-8e38-a61bf9c2e4a2" class="code code-wrap"><code>docker run hello-world</code></pre><p id="eb441db6-7aa0-40c4-ab76-269f34bac02a" class="">This should output a message that starts with the following:</p><pre id="061a998f-a43c-4e0d-aafe-a2c9179287f2" class="code code-wrap"><code>Hello from Docker!</code></pre><p id="17564757-8d5a-4d41-9cd5-aca1fb88f52b" class="">This message shows that your installation appears to be working correctly.</p><figure id="ade03752-3cd0-499e-a60d-bc93c4e9f882" class="image"><a href="https://training.play-with-docker.com/images/ops-basics-hello-world.svg"><img src="https://training.play-with-docker.com/images/ops-basics-hello-world.svg"/></a></figure><p id="b492e2ce-85a8-4a6d-8375-2f6f47e83b63" class=""><mark class="highlight-blue">To generate this message, Docker took the following steps:</mark></p><ol id="ca692fbe-4b22-45a8-b886-337e957eddba" class="numbered-list" start="1"><li> The Docker client contacted the Docker daemon.</li></ol><ol id="5ee39223-0f50-45ee-ad6a-8f6268251938" class="numbered-list" start="2"><li> The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.</li></ol><ol id="2a933397-4793-471a-b104-0b7ef99773ff" class="numbered-list" start="3"><li> The Docker daemon created a new container from that image which runs the executable that produces the output you are currently reading.</li></ol><ol id="cc18522c-789d-4edb-a358-bc28b2d4d65c" class="numbered-list" start="4"><li> The Docker daemon streamed that output to the Docker client, which sent it to your terminal.
+</li></ol><p id="cc47e9b1-942d-4454-9f30-27241e3a0ac6" class="">To see if there are any running container instances, run the following command:</p><p id="eb1e7317-5ce5-4abd-8fb5-57cca5ae239c" class="">
+</p><pre id="4b210a2e-3e8b-47fd-a09a-0798fbc84bd7" class="code code-wrap"><code>docker ps</code></pre><p id="1d252d87-5d7b-4b75-8f9d-fa972fc76a97" class="">It might return an empty result:</p><pre id="27f65c33-03be-4830-a812-c49a87a0b7c6" class="code code-wrap"><code>CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre><p id="c8e74a5d-9cc1-4bbf-af64-cd1a04f07a9e" class="">This is because the <mark class="highlight-blue"><strong>hello-world</strong></mark> container instance has already stopped after producing the console output. </p><p id="38da0264-eb2b-484a-a374-834d3e4d0a4a" class="">To see stopped containers change the previous docker command to, use </p><pre id="9e88b676-39cf-4be6-97f8-025a896a7123" class="code code-wrap"><code>docker ps -a </code></pre><p id="0cc96f4b-3b4e-4966-8cb5-58667b1d112f" class="">to output all container instances, running and stopped.</p><h3 id="9e1349fb-c930-44ce-a577-99f195593489" class="">Something more advanced</h3><p id="81142679-14f3-42ae-b3af-e4b7dc3156b6" class="">Now let&#x27;s see if we can run a useful tool inside a container. </p><p id="6ea52d23-14b3-42c1-a017-0984cc7f8a6d" class="">First, create a <a href="../Docker%20Wiki%205e2222d95bff46e99d248535cd21c043.html">volume </a>to store container configuration data:</p><pre id="1d050e2d-013e-48f1-a4ce-a9e99ab42349" class="code code-wrap"><code>docker volume create portainer_data</code></pre><p id="415445fe-0885-4f97-a8e9-5334bc6cb265" class="">Next, start a new container with:</p><pre id="35aa80cb-f38f-4477-a765-7bdd51e31c13" class="code code-wrap"><code>docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ad662ef5-55b2-4a3c-be60-6c8033957067"><div style="font-size:1.5em"><span class="icon">❓</span></div><div style="width:100%">Portainer is an open-source management UI for Docker. Portainer makes it easier for you to manage your Docker containers, it allows you to manage containers, images, networks, and volumes from the web-based Portainer dashboard.</div></figure><p id="a31b1486-ac1b-42d4-ab53-07320cf013ff" class="">This command runs a containerized web server at port 9000. The web server port is connected to the host machine (your laptop). This means you can now access the web server.
+For example, try using the <code>curl</code> command to see if it works:</p><pre id="a0a8cc24-9adb-453b-b6ae-8dd2046b1b40" class="code code-wrap"><code>curl localhost:9000</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d32703a7-15d5-42a6-9a07-3ce89319ebba"><div style="font-size:1.5em"><span class="icon">❓</span></div><div style="width:100%">cURL, which stands for client URL, is a command line tool that developers use to transfer data to and from a server. At the most fundamental, cURL lets you talk to a server by specifying the location (in the form of a URL) and the data you want to send. cURL supports several different protocols, including HTTP and HTTPS, and runs on almost every platform.</div></figure><p id="a83cd5f1-3fc1-4ad7-8147-c861d08ba1b0" class="">This should output raw HTML to your terminal.</p><p id="45acc283-d144-419a-a56c-c6518c349ffe" class="">In your browser, navigate to <a href="http://localhost:9000/">http://localhost:9000</a> and create a login for your local machine. Choose to manage the Local Docker Environment. The management UI can come in useful to manage Docker, while you are learning about the Docker CLI. It should show (at least) 2 containers on your machine:</p><figure id="096cafd4-b653-44b9-9beb-c0b7a3e962e0" class="image"><a href="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%202.png"><img style="width:1919px" src="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%202.png"/></a></figure><p id="a9c70b31-54ef-4ba0-8c98-63c4e3e76c5a" class="">Feel free to spend some time in this environment for a minute or two. See if you can start the hello-world container again.</p><h3 id="ed32f39f-6c6e-4121-b539-e46fa7010dec" class="">Running an Nginx web server</h3><p id="6ab047b4-9293-4b3c-b8fa-61ab6e0c1e7c" class="">Return to your command prompt and search the Docker Hub for public images. Try searching for <code>ngingx</code> which is an HTTP web server and reverse proxy.</p><p id="b4db99e1-afdf-4019-9765-22de71b63307" class="">Search for a container image (template) named &#x27;nginx&#x27;</p><pre id="ce78154d-c894-43bf-9022-43fe46e4c3f5" class="code code-wrap"><code>docker search nginx</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="56a24ac8-e14e-4a05-a1e9-1774cb680dac"><div style="font-size:1.5em"><span class="icon">❓</span></div><div style="width:100%">Nginx, pronounced like “engine-ex”, is an open-source web server that, since its initial success as a web server, is now also used as a reverse proxy, HTTP cache, and load balancer.
+
+Some high-profile companies using Nginx include Autodesk, Atlassian, Intuit, T-Mobile, GitLab, DuckDuckGo, Microsoft, IBM, Google, Adobe, Salesforce, VMWare, Xerox, LinkedIn, Cisco, Facebook, Target, Citrix Systems, Twitter, Apple, Intel, and many more (source).
+
+Nginx was originally created by Igor Sysoev, with its first public release in October 2004. Igor initially conceived the software as an answer to the C10k problem, which is a problem regarding the performance issue of handling 10,000 concurrent connections.</div></figure><p id="a5bdfe72-e1b8-46b5-84b6-a731087a451c" class="">
+</p><p id="0e0af3c8-c719-44db-9fba-aa3181a9c09a" class="">As you can see in the output, there are quite a few, but only one is marked as &#x27;official&#x27;. Anyone on the planet can create a container image named nginx and publish it. Make sure you get your images from trusted sources!</p><p id="3819d8c3-8c2d-4b88-873d-a8b755363c50" class="">Get a local copy of the container image:</p><pre id="14f47c56-3730-41fc-b00a-0fc6aba49c72" class="code code-wrap"><code>docker pull nginx</code></pre><p id="f0982080-eb18-4443-bd64-3e85f1313aa3" class="">Create a container from the image and connect its network port 80 to your machines&#x27; port 8090:</p><pre id="38e2bc37-afb5-434f-8222-62c898b03f43" class="code code-wrap"><code>docker run -it --name docker-nginx -p 8090:80 nginx</code></pre><p id="757f8aa9-fe34-4eac-8310-c8ee5c8b5aa4" class=""><code>/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up</code>
+</p><p id="8a633d59-51d1-4179-97b1-3c49733560be" class="">The last command seems to block. That&#x27;s okay. Navigate to <a href="http://localhost:8090/">http://localhost:8090</a>. You will notice that the output of the nginx container is now filling the console. The prompt is missing. This is because your terminal is now attached to the container, by specifying <code>-it</code> with the <code>run</code> command. To detach your terminal from the container, use the key combination <code>Ctrl+P, Ctrl+Q</code> to detach from the container and return to the prompt. You can avoid your terminal being attached by specifying <code>-d</code>, as we did with Portainer earlier.</p><p id="5e63aba5-dd9a-4c57-aace-2049100b78fb" class="">Inspecting the running containers with <code>docker ps</code>, you should find that the nginx container is still running:</p><pre id="7458e068-e9e9-4aad-8787-32818ec549b2" class="code code-wrap"><code>docker ps
+
+CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS          PORTS                                            NAMES
+a9eb60b21543   nginx                    &quot;/docker-entrypoint.…&quot;   21 seconds ago   Up 19 seconds   0.0.0.0:8090-&gt;80/tcp                             docker-nginx
+c60021dd30ca   portainer/portainer-ce   &quot;/portainer&quot;             22 minutes ago   Up 22 minutes   0.0.0.0:8000-&gt;8000/tcp, 0.0.0.0:9000-&gt;9000/tcp   portainer
+</code></pre><h3 id="4d8a9046-1f06-4336-98bb-cf28be146e2b" class="">Running Microsoft SQL Server on Linux</h3><p id="ec938451-d4ad-42d2-8ba2-3aa813177563" class="">Next, start a container to run an instance of SQL Server on Linux.
+The image for SQL Server for Linux is located in the Docker Store, since it is an official image. Navigate to <a href="https://hub.docker.com/">https://hub.docker.com</a> and search for <a href="https://hub.docker.com/_/microsoft-mssql-server">SQL Server</a> there. Pull the image when you found its name:</p><pre id="62f6cffa-c779-4d18-b06c-8493f0375fca" class="code code-wrap"><code>docker pull mcr.microsoft.com/mssql/server:2019-latest</code></pre><p id="404896f7-ea37-4d8d-9db9-f222a5e35a77" class="">Use the command:</p><pre id="b8f6d6fe-c375-4732-8bb2-9d1edb7bc80a" class="code code-wrap"><code>docker run -e ACCEPT_EULA=Y -e MSSQL_PID=Developer -e SA_PASSWORD=&quot;Pass@word&quot; --name sqldocker -p 5433:1433 -d mcr.microsoft.com/mssql/server:2019-latest</code></pre><p id="ffa3c8e2-dfee-4416-8a5a-574b4a2b6f5a" class="">The SQL Server container is started detached, so it will not show any output other than the container ID (yours will be different):</p><figure id="6a9cd512-6277-4433-873f-d06c155d2293" class="image"><a href="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%203.png"><img style="width:634px" src="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%203.png"/></a></figure><p id="b582046a-a440-487f-a518-3b46a51e4d0f" class="">You can refer to this container by (part of) its ID, or its name <code>sqldocker</code>. You do not have to specify the entire container ID for commands with the Docker CLI. It is sufficient to provide enough characters from the start to give a unique match. In the example above this would be <code>4 </code>or <code>4f </code>or <code>4f5</code>, depending on the IDs of other containers on your machine.</p><p id="4e3d62f4-591e-4e9d-8d4f-4b2b79ebc68a" class="">You can still examine the output of the container even though it is detached from the console. Simply run <code>docker logs &lt;container-id&gt;</code>, substituting the ID of the container, like so:</p><pre id="76a98e95-e6d7-48b3-bb31-9287d442bad2" class="code code-wrap"><code>docker logs 4f5</code></pre><h3 id="27454fc6-c9fb-49bc-a9b4-959c41b043a8" class="">Using <code>SQLCMD</code> to connect to your database server</h3><p id="605789dc-b587-4490-b73e-ea6a1250d909" class="">You can now attach a terminal to the server and run queries by using <code>sqlcmd</code>:</p><div><pre id="ade49c3f-ef4b-4b66-b335-3c0984e52152" class="code code-wrap"><code>docker exec -it sqldocker /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P &quot;Pass@word&quot;</code></pre></div><p id="0250a50c-16c3-463c-a62d-ad620c856073" class="">Next, run the following command to show all tables in the master database.</p><pre id="fd25da81-c1cf-4088-826e-5fd18a8c4c3f" class="code code-wrap"><code>1&gt; SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE=&#x27;BASE TABLE&#x27;
+2&gt; go
+</code></pre><p id="642c87a4-d9a4-4042-bff8-6f1f99cf17d3" class="">Run <code>exit</code> to close the container terminal connection, and return to local environment.</p><pre id="1845a55d-3c13-44ce-9873-5d373a830112" class="code code-wrap"><code>exit</code></pre><h3 id="a8652611-91e7-4533-ab67-c2937e45c045" class="">Using Visual Studio to connect to your database server</h3><p id="2063c147-358b-408d-b142-3e81ac3b4efc" class="">Start Visual Studio and examine the contents of the master database by adding a Data Connection in the Server Explorer. The database connection details are:</p><ul id="87a3a69b-c557-48d2-ac8e-53f29785fc77" class="bulleted-list"><li>Server: 127.0.0.1,5433 (notice the <strong>comma</strong> instead of a colon)</li></ul><ul id="0bdc7020-c3d3-4d6e-b942-0c9650a62dd9" class="bulleted-list"><li>Username: sa</li></ul><ul id="a3cf75a8-6cfd-4f5a-abcf-82df256b1995" class="bulleted-list"><li>Password: Pass@word</li></ul><ul id="3c85b233-0961-46ea-8700-6dd4ca9ab88c" class="bulleted-list"><li>Database instance: master</li></ul><figure id="83e4bd55-599a-4e54-bb5a-bdac5a4549e3" class="image"><a href="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%204.png"><img style="width:574px" src="Getting%20Started%201ceba38f6793478c95f3e08689ad6490/Untitled%204.png"/></a></figure><p id="cd9fae8a-7591-41d3-acb1-7f11c89d9bbc" class="">Click on &#x27;Test Connection&#x27; to verify your input. After that, you can interact with your containerized SQL Server from Visual Studio.</p><h3 id="a951e0f6-261e-4fb1-9c05-ee8df9880e83" class="">Cleaning up</h3><p id="80aa495b-f3a2-4dc5-a45a-613222d2f5d5" class="">Inspect the running containers again with <code>docker ps -a</code> to include stopped containers (like hello-world).</p><pre id="eb96d88d-93a9-4b2d-beb7-3cb1bffc5326" class="code code-wrap"><code>docker ps -a</code></pre><p id="b179c4f6-aad9-4521-b612-d5f63b13f231" class="">Stop and remove the <code>nginx</code> container with these commands:</p><pre id="a46c841a-e450-4073-b082-732c8d10b094" class="code code-wrap"><code>docker stop docker-nginx
+docker rm docker-nginx</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="086cb6e2-daeb-4d6e-a7de-e0c0a1a0df95"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Note: To issue a stop and rm command in one go, use docker rm -f</div></figure><pre id="7dacea51-a34f-47b1-b996-d8dc4a717d4f" class="code code-wrap"><code>docker rm -f &lt;container&gt;</code></pre><p id="481faed8-354d-4f6a-9e46-193d0e841c84" class="">Do the same for the <code>hello-world</code> container by using its container ID or the generated two-part name, which is something like <code>loving_newton</code>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2ae169d1-b579-4dc8-9c7a-a8a87b4ae651"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Note that you can specify --rm with the docker run command to have the container automatically deleted when it exits.</div></figure><h2 id="b1d556a7-6353-4e2e-b95c-954fa1f336f6" class="">Working with container images</h2><p id="17cae607-4b37-49db-bf9f-57151d10fa02" class="">By running the examples above you will have downloaded some container images. You can see which ones are available on your machine by the following command:</p><pre id="21f6b72f-d74b-4999-bc2c-be4588902e84" class="code code-wrap"><code>docker images</code></pre><p id="dfe9098e-255f-4d96-908e-7980efe9a7d8" class="">Remove the image <code>hello-world</code>:</p><pre id="85174349-f35d-4a14-a7f0-56d535a0059f" class="code code-wrap"><code>docker rmi hello-world</code></pre><h2 id="4fae47a5-8782-4fe9-902e-d8986c3365fe" class="">Container state and volumes</h2><p id="df5ffc7a-0135-4c18-b534-3a837a68cfc2" class="">You have already seen that containers support network connectivity. They also support disk operations. However, any data written to disk inside a container is only visible from within the container. It also shares the lifecycle of the container. This means that the data is lost when the container is deleted. There is a way to persist files generated by container. You do this by having the container write to a <code>volume</code>. You did this while creating the Portainer container earlier! A volume is a file or folder that exists outside of the container, for example on the host or on a network share. By storing files in volumes instead of inside the container, they will have a lifecycle that is not coupled that of the container; files remain and can be used by consecutive container instances.
+In the case of Portainer, this means that you won&#x27;t have to recreate the admin account every time you create a new container instance (for example, after upgrading to a newer version).</p><p id="8fd01119-0e10-416c-a3c8-2334ea04fe80" class="">Go ahead and give it a try:</p><p id="bc4c9a60-ff03-453e-b5f8-ebc20b07aed2" class="">Stop and remove the running portainer image:</p><pre id="739c644e-be99-4ff5-b156-d9003927367d" class="code code-wrap"><code>docker rm -f portainer</code></pre><p id="409fa945-75e4-4895-b92c-3a19043795de" class="">Recreate it:</p><pre id="4f8e3d34-6a3e-416a-a4fa-5bdc71186f30" class="code code-wrap"><code>docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+</code></pre><p id="51faed5a-f8ee-4788-9478-55cb5f1dab85" class="">and <a href="http://localhost:9000/">log in</a> using the account you created earlier.</p><p id="c46a64d0-b4b3-4152-8947-bfdbffdcf8f3" class="">Now delete the container <strong>and</strong> the volume and repeat the process:</p><pre id="4707d806-ca79-4db1-9878-46365a5517c0" class="code code-wrap"><code>docker rm -f portainer
+docker volume rm portainer_data
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+</code></pre><p id="da13eddd-8bd2-455b-ba4c-60899f79ca44" class="">Portainer has lost its state by deleting the volume. It will now ask you to create an account as if it&#x27;s the first time you ran Portainer when you <a href="http://localhost:9000/">log in</a>.</p><figure id="5e2222d9-5bff-46e9-9d24-8535cd21c043" class="link-to-page"><a href="../Docker%20Wiki%205e2222d95bff46e99d248535cd21c043.html"><span class="icon">🏗</span>Docker Wiki</a></figure><p id="d6ccecd5-d61b-4b5f-a919-e0c1d3f68892" class="">
+</p></div></article></body></html>
