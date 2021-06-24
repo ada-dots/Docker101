@@ -1,0 +1,641 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Docker Wiki</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5e2222d9-5bff-46e9-9d24-8535cd21c043" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1610325122159-8cd042916836?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🏗</span></div><h1 class="page-title">Docker Wiki</h1></header><div class="page-body"><p id="415d781f-565a-4a94-92b6-47a4da925255" class="block-color-gray">All things related to playing with Docker and material for the Docker 101 training</p><p id="5ab98ab0-3ac6-4259-ad58-9e9dd5e21ca1" class="">
+</p><nav id="1e31dbdc-b9c2-4881-86d3-2dffc83cb046" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1690ae20-e834-474a-a0b3-897495e8fd59">Prepare your development laptop</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6ce33402-96d1-456d-977f-7d1a9e5332b7">Guides</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f02f0fc7-60c4-4300-b977-c7da16a0e0f6">Docker<a href="https://phoenixnap.com/kb/docker-image-vs-container">*</a></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#13c9843d-fb8f-45cf-9807-020e3cde2ddd">Difference between VM and Docker</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#48633243-5f09-4727-b47c-c20ff7184a8b">Docker image</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9bd0bc1c-fabc-4572-89db-fbc9e7428707">Docker image command</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5200d8ea-7cd4-4ef3-909d-9a9ad969bc53">Docker container</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ae2f4436-6b5f-4309-b5ac-fe1232f9579d">Docker container run</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2596fcb7-961e-4fb6-85bf-ee023d554ef0">Docker Images vs Containers</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#20f5d674-8a73-4b32-8570-af45088e0fab">Docker volume<a href="https://phoenixnap.com/kb/docker-volumes">*</a></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7c000bbe-10a3-4141-8af1-ed6ac0207d99"><strong>What are Docker Volumes?</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bd91dab4-7aea-4b66-8620-782244a633c8">Docker containers, images, and registries <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/docker-containers-images-registries">*</a></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#94c0af15-dce0-43b4-b72a-9c431a14c30e">Where do I get Docker images?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#954fcce4-88c2-447c-ab7a-a9625ab6cb3b">Dockerfile<a href="https://phoenixnap.com/kb/create-docker-images-with-dockerfile">*</a></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7b642806-7b0b-4bd8-8436-f7a391eaf6b4">Docker Compose</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4cad6756-18de-44b1-a95c-57107662d772">From Dockerfile to Image to Container</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2f9b70b8-049f-4463-b897-70bfc64e223d">Docker terminology <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/docker-terminology">*</a></a></div></nav><h1 id="1690ae20-e834-474a-a0b3-897495e8fd59" class="">Prepare your development laptop</h1><figure id="4298b15f-ee99-44c2-84b5-0814da6bd7c6" class="link-to-page"><a href="Docker%20Wiki%205e2222d95bff46e99d248535cd21c043/Tools%20we%20will%20use%204298b15fee9944c284b50814da6bd7c6.html"><span class="icon">⚙️</span>Tools we will use</a></figure><div id="a49f14ee-7f92-4113-8337-a2aa19de8eae" class="column-list"><div id="57cfb29a-a579-433a-87ad-36036ebbb1f0" style="width:90.90909090909092%" class="column"><h1 id="6ce33402-96d1-456d-977f-7d1a9e5332b7" class="">Guides</h1><figure id="1ceba38f-6793-478c-95f3-e08689ad6490" class="link-to-page"><a href="Docker%20Wiki%205e2222d95bff46e99d248535cd21c043/Getting%20Started%201ceba38f6793478c95f3e08689ad6490.html"><span class="icon">🚜</span>Getting Started</a></figure><figure id="df18e1e6-d317-47b8-a7c2-71290a39e81d" class="link-to-page"><a href="Docker%20Wiki%205e2222d95bff46e99d248535cd21c043/Docker%20and%20Net%20df18e1e6d31747b8a7c271290a39e81d.html"><span class="icon">🔄</span>Docker and .Net</a></figure><figure id="f7e75c15-0fc7-4267-bc57-8d1bb4e0cdbb" class="link-to-page"><a href="Docker%20Wiki%205e2222d95bff46e99d248535cd21c043/Training%20Directory%20f7e75c150fc74267bc578d1bb4e0cdbb.html"><span class="icon">🖲️</span>Training Directory</a></figure></div><div id="5fc459ad-33f7-436d-8515-c33f7d5cdf5d" style="width:9.090909090909092%" class="column"><p id="a8ff761c-147c-41ba-a896-1847f602de33" class="">
+</p></div></div><h1 id="f02f0fc7-60c4-4300-b977-c7da16a0e0f6" class="">Docker<a href="https://phoenixnap.com/kb/docker-image-vs-container">*</a></h1><p id="9959b246-6b2f-4089-9262-72ce688fdc1e" class=""><strong>Docker</strong> is an open-source software designed to facilitate and simplify application development. It is a set of platform-as-a-service products that create isolated virtualized environments for building, deploying, and testing applications.</p><p id="053a5a2d-3961-4d23-b87f-9b47d630ed3d" class="">Although the software is relatively simple to master, there are some Docker-specific terms that new users may find confusing. Dockerfiles, images, containers, volumes, and other terminology will need to be mastered and should become second nature over time.</p><h2 id="13c9843d-fb8f-45cf-9807-020e3cde2ddd" class="">Difference between VM and Docker</h2><p id="508326ca-3c1f-40a4-94b4-c4a49021d406" class="">
+</p><p id="c2d2091e-cc0b-49af-ae4e-be248fdb5e65" class="">A simplistic definition of a container is a lightweight VM. Where a VM might perform many functions, a container typically has only one function.</p><p id="c4b28112-3052-4008-b15a-80055ff0617d" class="">
+</p><ul id="6b9f2971-6af1-44d4-aeac-f59d6c81c6ad" class="bulleted-list"><li>The VM is a <strong><em>hardware</em></strong><strong> </strong>abstraction: it takes physical CPUs and RAM from a host, and divides and shares it across several smaller virtual machines. There is an OS and application running inside the VM, but the virtualization software usually has no real knowledge of that.</li></ul><ul id="40e80611-f24d-4f59-816f-52e535eeace5" class="bulleted-list"><li>A container is an <strong><em>application</em></strong><strong> </strong>abstraction: the focus is really on the OS and the application, and not so much the hardware abstraction. Many customers actually use both VMs and containers today in their environments and, in fact, may run containers inside of VMs.</li></ul><p id="4f0002ea-02e0-47a3-a1b6-ae09f97d04f0" class="">Unlike virtual machines (VMs) where virtualization happens at the hardware level, containers virtualize at the app layer. They can utilize one machine, share its kernel, and virtualize the operating system to run isolated processes. This makes containers extremely <strong>lightweight</strong>, allowing you to retain valuable resources.</p><figure id="418e7a5a-a5d2-40c4-9380-0c8581a8236b" class="image"><a href="https://phoenixnap.com/kb/wp-content/uploads/2021/04/container-vs-virtual-machine.png"><img src="https://phoenixnap.com/kb/wp-content/uploads/2021/04/container-vs-virtual-machine.png"/></a></figure><p id="d6636746-a193-426a-b900-793b43e2ff1a" class=""><em>More details at:</em></p><figure id="86944c45-68fd-458f-9c2c-0560a1f8d39c"><a href="https://phoenixnap.com/kb/containers-vs-vms" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Containers vs Virtual Machines (VMs): Critical Differences to Understand</div><div class="bookmark-description">Introduction Both virtual machines and containers are used to created isolated virtual environments for developing and testing applications or software. The question is how they differ. This article examines the two concepts to help understand the difference between a container and a VM.</div></div><div class="bookmark-href"><img src="https://phoenixnap.com/favicon.ico" class="icon bookmark-icon"/>https://phoenixnap.com/kb/containers-vs-vms</div></div><img src="https://phoenixnap.com/kb/wp-content/uploads/2021/04/containers-vs-virtual-machines-head.png" class="bookmark-image"/></a></figure><hr id="41ccc8a4-852e-44f4-be8e-29a894ab297e"/><h1 id="48633243-5f09-4727-b47c-c20ff7184a8b" class="">Docker image</h1><blockquote id="26367afd-f86d-498e-8fe1-e644e43160ef" class="">A <strong>Docker image</strong> is an immutable (unchangeable) file that contains the source code, libraries, dependencies, tools, and other files needed for an application to run.</blockquote><p id="16fdfaa7-ffc9-4b5b-80be-b8aea6361e87" class="">Due to their <strong>read-only</strong> quality, these images are sometimes referred to as snapshots. They represent an application and its virtual environment at a specific point in time. This consistency is one of the great features of Docker. It allows developers to test and experiment software in stable, uniform conditions.</p><p id="cc99e044-33f4-4606-86e7-b7264819b8c9" class="">You can create an unlimited number of Docker images from one <strong>image base</strong>. Each time you change the initial state of an image and save the existing state, you create a new template with an additional layer on top of it.</p><blockquote id="20a74136-8b3f-4026-823a-f142d32d4fb8" class="">Docker images can, therefore, consist of a <strong>series of layers</strong>, each differing but also originating from the previous one. Image layers represent read-only files to which a container layer is added once you use it to start up a virtual environment.</blockquote><h2 id="9bd0bc1c-fabc-4572-89db-fbc9e7428707" class="">Docker image command</h2><p id="b5db3627-9083-45c2-9563-70c44cd2b24d" class="">The pull command fetches the alpine image from the Docker registry and saves it in our system. In this case the registry is Docker Hub. You can change the registry</p><p id="96132810-e9b4-4a35-9ef6-ac4a5b2658f2" class="">You can use the <code>docker image</code> command to see a list of all images on your system.</p><hr id="a29cbecb-2874-4164-b432-2aa2a976c84b"/><h1 id="5200d8ea-7cd4-4ef3-909d-9a9ad969bc53" class="">Docker container</h1><p id="ea2076ad-ce76-40a4-8144-1a222a73740e" class="">Since images are, in a way, just <strong>templates</strong>, you cannot start or run them. What you can do is use that template as a base to build a <strong>container</strong>. A container is, ultimately, just a running image. Once you create a container, it adds a writable layer on top of the immutable image, meaning you can now modify it.</p><p id="0888b559-dd04-4fc2-beba-da35edce1c0d" class="">The image-based on which you create a container exists separately and cannot be altered</p><figure id="1f1f11a5-44eb-41c4-9473-eaa5ddd3faa2" class="image"><a href="https://phoenixnap.com/kb/wp-content/uploads/2021/04/container-layers.png"><img src="https://phoenixnap.com/kb/wp-content/uploads/2021/04/container-layers.png"/></a></figure><blockquote id="0826dba8-dcc2-4caa-9021-2cefc663fe39" class="">A Docker container is a virtualized run-time environment where users can isolate applications from the underlying system. These containers are compact, portable units in which you can start up an application quickly and easily.</blockquote><p id="85f4518a-5fe7-4586-bfa2-4e53d1cc3069" class="">A valuable feature is the <strong>standardization</strong> of the computing environment running inside the container. Not only does it ensure your application is working in identical circumstances, but it also simplifies sharing with other teammates.</p><p id="63b56cb0-a38e-4216-90f8-b56d2c98670e" class="">As containers are autonomous, they provide <strong>strong isolation</strong>, ensuring they do not interrupt other running containers, as well as the server that supports them. Docker claims that these units “provide the strongest isolation capabilities in the industry”. Therefore, you won’t have to worry about keeping your machine <strong>secure</strong> while developing an application.</p><p id="d513f1ce-8b21-4703-a8ee-113a67bdd3fd" class="">
+</p><blockquote id="504d0bc6-a283-4007-bd39-f05253794077" class="">Containers are designed for running specific tasks and processes, not for hosting operating systems. You create a container to serve a single unit task. Once it completes the given task, it stops. Therefore, the container life-cycle depends on the ongoing process inside of it. Once the process stops, the container stops as well.</blockquote><h2 id="ae2f4436-6b5f-4309-b5ac-fe1232f9579d" class="">Docker container run</h2><pre id="50eb2a26-27ad-4fe9-909c-57d8c21e55f1" class="code code-wrap"><code>docker container run X</code></pre><p id="c45e9c01-7f3a-4a9e-a984-d819e100ad01" class="">When you call run, the Docker client:</p><ul id="c241f056-82db-4c9f-bbfc-df72173f59cf" class="bulleted-list"><li>finds the image</li></ul><ul id="650696e4-b1e0-42e7-8a39-7d66e546d3b0" class="bulleted-list"><li>creates the container </li></ul><ul id="ab52cd45-a5ee-4979-a945-eb38a3afe483" class="bulleted-list"><li>then runs a command in that container. </li></ul><p id="9eff2eea-126b-4001-a84b-d3c8487e3e7f" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9fe4d374-6ecf-4267-9654-99d6ffe794a4"><div style="font-size:1.5em"><span class="icon">ℹ️</span></div><div style="width:100%">When you run docker container run alpine, you provided a command (ls -l), so Docker executed this command inside the container. After the ls command finished, the container shut down.</div></figure><figure id="7bd85715-d14e-4788-bd19-e212f0ad37a4" class="image"><a href="https://training.play-with-docker.com/images/ops-basics-run-details.svg"><img src="https://training.play-with-docker.com/images/ops-basics-run-details.svg"/></a></figure><p id="de7efd74-2a70-4b39-acf8-a9ce1549a769" class="">
+</p><p id="c2574132-40ce-4ad7-b652-36b0b3c79ea5" class="">Imagine booting up a virtual machine (VM), running a command and then killing it; it would take a minute or two just to boot the VM before running the command. A VM has to emulate a full hardware stack, boot an operating system, and then launch your app - it’s a virtualized hardware environment. </p><p id="a0168fd4-be5c-4d5d-ac00-293fc7c8e17b" class="">Docker containers function at the application layer so they skip most of the steps VMs require and just run what is required for the app. <em><strong>Now you know why they say containers are fast!</strong></em></p><hr id="b42b8acf-44b5-46ba-8ad6-371eca355168"/><h2 id="2596fcb7-961e-4fb6-85bf-ee023d554ef0" class="">Docker Images vs Containers</h2><p id="bcb7ef31-a600-43ee-8364-41d482202f16" class="">Both elements are closely related and are part of a system defined by the Docker platform.</p><p id="6a61f63e-7196-4251-ad98-2bfa2d3d3219" class=""><strong>Images can exist without containers, whereas a container needs to run an image to exist.</strong> Therefore, containers are dependent on images and use them to construct a run-time environment and run an application.</p><p id="54209ec3-c893-4b4c-a5aa-be46fc354dcd" class="">The two concepts exist as essential components (or rather phases) in the process of running a Docker container. Having a running container is the final “phase” of that process, indicating it is dependent on previous steps and components. That is why docker images essentially govern and shape containers.</p><hr id="758a09ae-4244-4832-8389-a09b31e530a7"/><h1 id="20f5d674-8a73-4b32-8570-af45088e0fab" class="">Docker volume<a href="https://phoenixnap.com/kb/docker-volumes">*</a></h1><h3 id="7c000bbe-10a3-4141-8af1-ed6ac0207d99" class=""><strong>What are Docker Volumes?</strong></h3><p id="1731f1c1-8e74-4446-918b-96262a9a6275" class="">Docker volumes are file systems mounted on Docker containers to preserve data generated by the running container.</p><p id="62517bf8-a619-4f49-aafe-5a7e2b490658" class="">The volumes are stored on the host, independent of the container life cycle. This allows users to back up data and share file systems between containers easily.</p><hr id="c02dc18c-693c-4388-a067-7cea98de4a9a"/><h1 id="bd91dab4-7aea-4b66-8620-782244a633c8" class="">Docker containers, images, and registries <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/docker-containers-images-registries">*</a></h1><p id="7a625198-6a96-4886-b6c4-a479c31e88a3" class="">Developers should store images in a registry, which acts as a library of images and is needed when deploying to production orchestrators. Docker maintains a public registry via Docker Hub; other vendors provide registries for different collections of images, including Azure Container Registry. Alternatively, enterprises can have a private registry on-premises for their own Docker images.</p><p id="f5c6a1cc-c76a-4c47-98f7-0c70e3fcf1b3" class="">The registry is like a bookshelf where images are stored and available to be pulled for building containers to run services or web apps. There are private Docker registries on-premises and on the public cloud. Docker Hub is a public registry maintained by Docker, along the Docker Trusted Registry an enterprise-grade solution, Azure offers the Azure Container Registry. AWS, Google, and others also have container registries.</p><figure id="dab27dd7-23ec-4ce0-9b41-9bc72c6ab1ae" class="image"><a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/media/docker-containers-images-registries/taxonomy-of-docker-terms-and-concepts.png"><img src="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/media/docker-containers-images-registries/taxonomy-of-docker-terms-and-concepts.png"/></a></figure><hr id="3dcfb384-0f7b-47e0-be28-204e1b78a9a1"/><h3 id="94c0af15-dce0-43b4-b72a-9c431a14c30e" class="">Where do I get Docker images?</h3><p id="5867bf26-7af0-46be-b30f-7982de8beb17" class=""><a href="https://hub.docker.com/">Docker Hub</a></p><p id="2708fc81-2628-45af-bb9b-651c80d5b3d4" class="">Docker Hub repositories allow you share container images with your team, customers, or the Docker community at large.</p><p id="bb441ac4-ecd4-4130-bfe2-9b44bf7f89d7" class="">The Docker Official Images are a curated set of Docker repositories hosted on Docker Hub. <a href="https://hub.docker.com/_/hello-world">Example</a></p><h1 id="954fcce4-88c2-447c-ab7a-a9625ab6cb3b" class="">Dockerfile<a href="https://phoenixnap.com/kb/create-docker-images-with-dockerfile">*</a></h1><p id="bb3d1547-a234-4faf-9014-451b7c0476d5" class="">A Dockerfile is a text file that defines how to construct a Docker image. It generally consists of instructions like FROM, USER, RUN, COPY, etc. that specify a base image (an operating system image that may also be configured with one or more applications), and then layer on other applications, configuration, and environment settings.</p><p id="465d98d0-91dd-4ceb-a4b9-84d019809777" class="">
+</p><p id="153db588-06c2-46d4-88ce-b7bcb554c05f" class="">The first instruction in a Dockerfile specifies an image to use as the base. Each subsequent instruction commits a change to a new layer, which is used in turn as the base for the next instruction. Each layer includes only the changes from the previous layer. The union filesystem merges the layers to create a container’s root filesystem.</p><h1 id="7b642806-7b0b-4bd8-8436-f7a391eaf6b4" class="">Docker Compose</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="08cc2f7c-9e13-43dc-9187-91acb6c7e0d1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">To not be confused with Dockerfile
+Docker Compose is a tool for building and running applications composed of multiple Docker containers. </div></figure><p id="cc6f116b-f9ee-4b9e-875c-cb707936457f" class="">Docker Compose is a tool that enables you to define multiple containers and their dependencies in a declarative yml file. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ad5806c3-b06e-4b4a-84ae-e6b3dbdddbfe"><div style="font-size:1.5em"><span class="icon">ℹ️</span></div><div style="width:100%">YAML (YAML Ain’t Markup Language) is a declarative language similar to JSON but aimed at making it more readable by humans. Rather than surrounding everything in quotes and brackets like JSON does, it uses indentation for hierarchy. </div></figure><p id="ff111437-c050-4f62-ba39-ae80bea91d47" class="">Developers like Docker Compose because it’s more readable than the Docker command line and makes it easy to compose and connect multiple containers in a declarative way. </p><h1 id="4cad6756-18de-44b1-a95c-57107662d772" class="">From Dockerfile to Image to Container</h1><p id="c0a75b3f-7531-45d6-9b35-0770aaf2bd7b" class="">It all starts with a script of instructions that define <strong>how to build a specific Docker image</strong>. This script is called a <a href="https://phoenixnap.com/kb/create-docker-images-with-dockerfile">Dockerfile</a>. The file automatically executes the outlined commands and creates a <strong>Docker image</strong>.</p><p id="75eff4fb-3324-499d-918e-1f8831e38431" class="">
+</p><p id="d9a2dffc-0ef7-4331-bfc4-446746072f91" class="">The command for creating an image from a Dockerfile is </p><pre id="88801c6e-7097-4148-9a68-47562e52544b" class="code code-wrap"><code>docker build</code></pre><p id="22b06817-0811-4744-a487-fce97360ccbe" class="">When you run the Docker Build command with the dockerfile, the Docker engine runs each command in the script by creating a container, making the modifications you specify, and executing a Docker Commit command to save the changes as a new image.</p><p id="cd6082bd-39e3-4372-80f0-5277ec320292" class="">
+</p><p id="3483c519-9d5e-4849-8dc8-2bdeb04daa41" class="">The image is then used as a template (or base), which a developer can copy and use it to run an application. The application needs an isolated environment in which to run – a <strong>container</strong>.</p><p id="42b40197-5ebc-4256-8931-f09dbd2b6b3d" class="">This environment is not just a virtual “space”. It entirely relies on the image that created it. The source code, files, dependencies, and binary libraries, which are all found in the Docker image, are the ones that make up a container.</p><p id="f0f3087b-eed7-4126-bf52-df3dfd95dc5a" class="">To create a container layer from an image, use the command </p><pre id="0e025ee0-4e58-473d-82e9-80bc44d3dd0f" class="code code-wrap"><code>docker create</code></pre><p id="7ac96fe3-e526-4286-97a5-96ca86ca608b" class="">Finally, after you have launched a container from an existing image, you start its service and run the application.</p><figure id="ce016aa4-2baa-43a9-aedb-3f7554d7c054" class="image"><a href="https://phoenixnap.com/kb/wp-content/uploads/2021/04/crating-a-docker-container.png"><img src="https://phoenixnap.com/kb/wp-content/uploads/2021/04/crating-a-docker-container.png"/></a></figure><p id="dc4ba3d4-3051-4283-b455-62b9368728ec" class="">
+</p><h1 id="2f9b70b8-049f-4463-b897-70bfc64e223d" class="">Docker terminology <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/container-docker-introduction/docker-terminology">*</a></h1><p id="d359bdb7-f8d6-4a94-ac1e-8175dab1c675" class=""><a href="https://docs.docker.com/glossary/">Docker official glossary</a></p><p id="9720970e-a8f1-4900-a2d0-d114eed28049" class=""><strong>Container image</strong>: A package with all the dependencies and information needed to create a container. An image includes all the dependencies (such as frameworks) plus deployment and execution configuration to be used by a container runtime. Usually, an image derives from multiple base images that are layers stacked on top of each other to form the container&#x27;s filesystem. An image is immutable once it has been created.</p><p id="1bad059d-c9cf-4904-9ce3-5b7823455ef8" class=""><strong>Dockerfile</strong>: A text file that contains instructions for building a Docker image. It&#x27;s like a batch script, the first line states the base image to begin with and then follow the instructions to install required programs, copy files, and so on, until you get the working environment you need.</p><p id="f7a89de0-faef-49c8-8281-0f915ee50e7d" class=""><strong>Build</strong>: The action of building a container image based on the information and context provided by its Dockerfile, plus additional files in the folder where the image is built. You can build images with the following Docker command:</p><pre id="94e7deb8-e98d-4922-a6ab-d98cb929eb0d" class="code code-wrap"><code>docker build</code></pre><p id="a31176a1-74b5-4d9d-b38d-539a99d3507a" class=""><strong>Container</strong>: An instance of a Docker image. A container represents the execution of a single application, process, or service. It consists of the contents of a Docker image, an execution environment, and a standard set of instructions. When scaling a service, you create multiple instances of a container from the same image. Or a batch job can create multiple containers from the same image, passing different parameters to each instance.</p><p id="cb965174-dbf8-4b17-876f-0244865908f7" class=""><strong>Volumes</strong>: Offer a writable filesystem that the container can use. Since images are read-only but most programs need to write to the filesystem, volumes add a writable layer, on top of the container image, so the programs have access to a writable filesystem. The program doesn&#x27;t know it&#x27;s accessing a layered filesystem, it&#x27;s just the filesystem as usual. Volumes live in the host system and are managed by Docker.</p><p id="63a2c617-f122-4bfc-853d-5ffba9ead687" class=""><strong>Tag</strong>: A mark or label you can apply to images so that different images or versions of the same image (depending on the version number or the target environment) can be identified.</p><p id="967fef5d-7afb-4621-a4c4-85eeb9a0b369" class=""><strong>Repository (repo)</strong>: A collection of related Docker images, labeled with a tag that indicates the image version. Some repos contain multiple variants of a specific image, such as an image containing SDKs (heavier), an image containing only runtimes (lighter), etc. Those variants can be marked with tags. A single repo can contain platform variants, such as a Linux image and a Windows image.</p><p id="ea84a050-71af-4a69-9e5b-a443ac5a431c" class=""><strong>Registry</strong>: A service that provides access to repositories. The default registry for most public images is <a href="https://hub.docker.com/">Docker Hub</a> (owned by Docker as an organization). A registry usually contains repositories from multiple teams. Companies often have private registries to store and manage images they&#x27;ve created. Azure Container Registry is another example.</p><p id="b947d4a3-afb9-4cbd-8bec-c4efba45b446" class=""><strong>Multi-arch image</strong>: For multi-architecture, it&#x27;s a feature that simplifies the selection of the appropriate image, according to the platform where Docker is running. For example, when a Dockerfile requests a base image <strong>mcr.microsoft.com/dotnet/sdk:5.0</strong> from the registry, it actually gets <strong>5.0-nanoserver-1909</strong>, <strong>5.0-nanoserver-1809</strong> or <strong>5.0-buster-slim</strong>, depending on the operating system and version where Docker is running.</p><p id="0e76c32d-2082-4188-8dfd-e209887215b7" class=""><strong>Docker Hub</strong>: A public registry to upload images and work with them. Docker Hub provides Docker image hosting, public or private registries, build triggers and web hooks, and integration with GitHub and Bitbucket.</p><p id="bd8a6b6b-840f-4663-99a7-91b7477ad006" class=""><strong>Azure Container Registry</strong>: A public resource for working with Docker images and its components in Azure. This provides a registry that&#x27;s close to your deployments in Azure and that gives you control over access, making it possible to use your Azure Active Directory groups and permissions.</p><p id="c8918693-c8ad-4656-a7fd-718240f8b2a5" class=""><strong>Docker Trusted Registry (DTR)</strong>: A Docker registry service (from Docker) that can be installed on-premises so it lives within the organization&#x27;s datacenter and network. It&#x27;s convenient for private images that should be managed within the enterprise. Docker Trusted Registry is included as part of the Docker Datacenter product. For more information, see <a href="https://docs.docker.com/docker-trusted-registry/overview/">Docker Trusted Registry (DTR)</a>.</p><p id="0ddd15f4-3e89-4acb-a664-ccf9b6350133" class=""><strong>Compose</strong>: A command-line tool and YAML file format with metadata for defining and running multi-container applications. You define a single application based on multiple images with one or more .yml files that can override values depending on the environment. After you&#x27;ve created the definitions, you can deploy the whole multi-container application with a single command (docker-compose up) that creates a container per image on the Docker host.</p><p id="b95e0ce6-94ab-4e86-b88d-92d181187f2f" class="">
+</p></div></article></body></html>

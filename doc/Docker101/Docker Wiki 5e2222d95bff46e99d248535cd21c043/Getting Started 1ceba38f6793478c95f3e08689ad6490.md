@@ -4,7 +4,7 @@ Goals for this lab:
 
 ## Prerequisites
 
-make sure you have installed all the items from the section 
+make sure you have installed all the items from the section "Tools we will use"
 
 # Inspect your Docker environment
 
